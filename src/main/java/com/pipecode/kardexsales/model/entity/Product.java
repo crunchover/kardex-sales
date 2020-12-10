@@ -4,9 +4,7 @@ package com.pipecode.kardexsales.model.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,9 +14,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "products")
-@Builder
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor(force = true)
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 7536572304956144541L;

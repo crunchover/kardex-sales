@@ -8,12 +8,14 @@ import com.pipecode.kardexsales.validator.BaseValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @AllArgsConstructor
 public class CreateProduct2Db implements CreateProduct {
 
     private final BaseValidator validator;
     private final ProductRepository productRepository;
+    private final GetProduct getProduct;
     private final GetProductCategory getProductCategory;
 
     @Override
@@ -21,16 +23,22 @@ public class CreateProduct2Db implements CreateProduct {
 
         validator.accept(request);
 
-        final var category =
-                getProductCategory.get(request.getCategoryName());
+        final var product=
+                getProduct.get(request.getName(),request.getCategoryName());
 
-        final var product = Product.builder()
-                .name(request.getName())
-                .brand(request.getBrand())
-                .description(request.getDescription())
-                .price(request.getPrice())
-                .qty(request.getQty())
-                .category(category).build();
-        productRepository.save(product);
+        if(!product.isPresent()){
+            final var category =
+                    getProductCategory.get(request.getCategoryName());
+
+            final var newProduct = new Product();
+            newProduct.setName(request.getName());
+            newProduct.setBrand(request.getBrand());
+            newProduct.setDescription(request.getDescription());
+            newProduct.setPrice(request.getPrice());
+            newProduct.setQty(request.getQty());
+            newProduct.setCategory(category);
+            productRepository.save(newProduct);
+        }
+
     }
 }
