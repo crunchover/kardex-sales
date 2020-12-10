@@ -1,0 +1,28 @@
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+out/
+build/
+logs/
+bin/
+/.dbeaver-data-sources.xml
+/.classpath
+.metadata
+.idea/
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# JENV exclusion
+.java-version
+src/main/java/com/naranjax/accounting/api/model/misc
+deployment-swap.yaml
+run_w_telepresence.sh
+telepresence.log
+
+# Ignoring backup files
+*.BAK
+java_*.hprof
