@@ -16,6 +16,7 @@ import java.util.Date;
 @Table(name = "products")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product implements Serializable {

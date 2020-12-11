@@ -3,8 +3,10 @@ package com.pipecode.kardexsales.usecase.sales;
 import com.pipecode.kardexsales.exception.InvalidOperationException;
 import com.pipecode.kardexsales.exception.NotFoundElementException;
 import com.pipecode.kardexsales.gateway.db.OperationRepository;
+import com.pipecode.kardexsales.gateway.db.ProductRepository;
 import com.pipecode.kardexsales.model.entity.Operation;
 import com.pipecode.kardexsales.model.entity.OperationType;
+import com.pipecode.kardexsales.model.entity.Product;
 import com.pipecode.kardexsales.model.web.CreateSalesOkResponse;
 import com.pipecode.kardexsales.model.web.CreateSalesRequest;
 import com.pipecode.kardexsales.usecase.employee.GetEmployee;
@@ -25,6 +27,7 @@ public class CreateSales2Db implements CreateSales {
     private final BaseValidator validator;
     private final GetEmployee getEmployee;
     private final OperationRepository operationRepository;
+    private final ProductRepository productRepository;
     private final GetProduct getProduct;
 
 
@@ -36,37 +39,31 @@ public class CreateSales2Db implements CreateSales {
         final var employee = getEmployee.get(request.getIdentification(),
                 request.getEmployeeName(),
                 request.getEmployeeLastName());
-        Operation operation = new Operation();
-        operation.setEmployee(employee);
-        operation.setType(OperationType.SELL);
+
+        final var operation=Operation.builder().employee(employee)
+                .type(OperationType.SELL)
+                .build();
+
+        final var id = operationRepository.save(operation).getId();
 
 
         final var productList = request.getProduct().stream().map(item -> {
-
                     final var product = getProduct.get(item.getProductName(), item.getCategoryName());
-                    //cantidad a vender
-                    final var inventario = product.getQtyInventory();
-
-                    final var qtyBuy = item.getQtyBuy();
-
-                    final var newQty = calculateNewQtyInventory(inventario, qtyBuy);
-                    product.setQtyInventory(newQty);
+                    product.setQtyInventory(calculateNewQtyInventory(product.getQtyInventory(), item.getQtyBuy()));
                     product.setOperation(operation);
                     return product;
                 }
 
         ).collect(Collectors.toSet());
 
+        productRepository.saveAll(productList);
 
-        operation.setProducts(productList);
 
-
-        final var id = operationRepository.save(operation).getId();
 
         return CreateSalesOkResponse.builder()
                 .operationId(String.valueOf(id))
                 .product(request.getProduct())
-                .description(String.format("se realizo la compra por un total de productos",
+                .description(String.format("se realizo la compra por un total de %s productos",
                         request.getProduct().size()))
                 .build();
 
