@@ -1,4 +1,4 @@
-package com.pipecode.kardexsales.controller;
+package com.pipecode.kardexsales.controller.product;
 
 import com.pipecode.kardexsales.model.web.CreateProductRequest;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;

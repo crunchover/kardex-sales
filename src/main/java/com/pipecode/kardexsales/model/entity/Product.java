@@ -16,7 +16,8 @@ import java.util.Date;
 @Table(name = "products")
 @Getter
 @Setter
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 7536572304956144541L;
@@ -45,8 +46,11 @@ public class Product implements Serializable {
     private BigDecimal price;
 
     @NotNull(message = "cantidad de la operacion es un dato obligatorio")
-    private int qty;
+    private int qtyInventory;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "operation_id")
+    private Operation operation;
 
 
     @NotNull(message = "fecha de creacion es un dato obligatorio")

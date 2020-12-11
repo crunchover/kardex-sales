@@ -1,8 +1,8 @@
-package com.pipecode.kardexsales.controller;
+package com.pipecode.kardexsales.controller.employee;
 
 import com.pipecode.kardexsales.model.web.CreateEmployeeRequest;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
-import com.pipecode.kardexsales.usecase.employee.CreateEmployee2Db;
+import com.pipecode.kardexsales.usecase.employee.CreateEmployee;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -21,7 +21,7 @@ public class CreateEmployeeEndPoint {
 
     public static final String PATH = "/employees";
 
-    private final CreateEmployee2Db useCase;
+    private final CreateEmployee useCase;
 
     @ApiOperation("Permite registrar un empleado")
     @ApiResponses(value = {

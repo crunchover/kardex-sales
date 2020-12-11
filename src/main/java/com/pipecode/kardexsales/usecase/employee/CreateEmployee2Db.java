@@ -22,6 +22,7 @@ public class CreateEmployee2Db implements CreateEmployee {
 
         //Todo:// Fuera de scope realizar mejores validaciones
         Employee employee= new Employee();
+        employee.setIdentification(request.getIdentification());
         employee.setName(request.getName());
         employee.setLastName(request.getLastName());
         employee.setAddress(request.getAddress());

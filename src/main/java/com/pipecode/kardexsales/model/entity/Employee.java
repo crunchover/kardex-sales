@@ -23,6 +23,9 @@ public class Employee implements Serializable {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
+    @NotNull(message = "el documento del empleado es un dato obligatorio")
+    private String identification;
+
     @NotNull(message = "nombre del empleado es un dato obligatorio")
     private String name;
 

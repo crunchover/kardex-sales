@@ -8,13 +8,17 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Getter
 @Setter
+@Builder
 @Table(name = "operations")
-@NoArgsConstructor(force = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Operation implements Serializable {
 
     private static final long serialVersionUID = 7617387803678584749L;
@@ -36,5 +40,10 @@ public class Operation implements Serializable {
     @ManyToOne(optional = true,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "operation", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Product> products = new HashSet<>();
+
 
 }
