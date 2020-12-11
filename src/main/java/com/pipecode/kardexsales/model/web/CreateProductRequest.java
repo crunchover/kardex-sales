@@ -12,24 +12,24 @@ import java.math.BigDecimal;
 public class CreateProductRequest {
 
     private static final String EMPTY_CATEGORY = "El campo category no debe estar vacío";
-    private static final String WRONG_SIZE_ACCOUNT_ID = "La categoria debe tener entre 1 y 25 caracteres";
+    private static final String WRONG_SIZE = "La categoria debe tener entre 1 y 25 caracteres";
     private static final String INVALID_QTY = "La cantidad debe estar entre 1 y 9999";
     private static final String NULL_PRICE = "El campo precio no puede ser nulo";
 
     @NotBlank(message = EMPTY_CATEGORY)
-    @Size(max = 25, message = WRONG_SIZE_ACCOUNT_ID)
+    @Size(max = 25, message = WRONG_SIZE)
     private String categoryName;
 
     @NotBlank(message = EMPTY_CATEGORY)
-    @Size(max = 25, message = WRONG_SIZE_ACCOUNT_ID)
+    @Size(max = 25, message = WRONG_SIZE)
     private String name;
 
     @NotBlank(message = EMPTY_CATEGORY)
-    @Size(max = 25, message = WRONG_SIZE_ACCOUNT_ID)
+    @Size(max = 25, message = WRONG_SIZE)
     private String brand;
 
     @NotBlank(message = EMPTY_CATEGORY)
-    @Size(max = 25, message = WRONG_SIZE_ACCOUNT_ID)
+    @Size(max = 25, message = WRONG_SIZE)
     private String description;
 
     @NotNull(message = NULL_PRICE)

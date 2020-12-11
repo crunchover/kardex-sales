@@ -1,8 +1,8 @@
 package com.pipecode.kardexsales.controller;
 
-import com.pipecode.kardexsales.model.web.CreateProductRequest;
+import com.pipecode.kardexsales.model.web.CreateEmployeeRequest;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
-import com.pipecode.kardexsales.usecase.product.CreateProduct;
+import com.pipecode.kardexsales.usecase.employee.CreateEmployee2Db;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -11,33 +11,33 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @AllArgsConstructor
-@Api(tags = "Products")
+@Api(tags = "Employes")
 @CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
-@RequestMapping(CreateProductEndPoint.PATH)
-public class CreateProductEndPoint {
+@RequestMapping(CreateEmployeeEndPoint.PATH)
+public class CreateEmployeeEndPoint {
 
-    public static final String PATH = "/products";
+    public static final String PATH = "/employees";
 
-    private final CreateProduct useCase;
+    private final CreateEmployee2Db useCase;
 
-    @ApiOperation("Permite crear un producto y su categoria si no existe")
+    @ApiOperation("Permite registrar un empleado")
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "Producto creada exitosamente"),
-            @ApiResponse(code = 404, message = "Producto cliente no existen.",
+            @ApiResponse(code = 204, message = "Empleado creada exitosamente"),
+            @ApiResponse(code = 404, message = "Empleado cliente no existen.",
                     response = SimpleErrorMessage.class),
             @ApiResponse(code = 400, message = "La request no ha sido realizada correctamente.",
                     response = SimpleErrorMessage.class),
-            @ApiResponse(code = 422, message = "El Producto no pudo ser creada por un error en validaciones de negocio.",
+            @ApiResponse(code = 422, message = "El Empleado no pudo ser creada por un error en validaciones de negocio.",
                     response = SimpleErrorMessage.class),
             @ApiResponse(code = 503, message = "Un recurso externo al sistema no se encuentra disponible actualmente.",
                     response = SimpleErrorMessage.class)
     })
     @PostMapping
-    public ResponseEntity<String> apply(@RequestBody CreateProductRequest request) {
+    public ResponseEntity<String> apply(@RequestBody CreateEmployeeRequest request) {
         useCase.apply(request);
         return ResponseEntity.noContent().build();
     }
-
 }
