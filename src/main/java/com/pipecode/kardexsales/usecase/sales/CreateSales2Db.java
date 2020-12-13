@@ -6,7 +6,6 @@ import com.pipecode.kardexsales.gateway.db.OperationRepository;
 import com.pipecode.kardexsales.gateway.db.ProductRepository;
 import com.pipecode.kardexsales.model.entity.Operation;
 import com.pipecode.kardexsales.model.entity.OperationType;
-import com.pipecode.kardexsales.model.entity.Product;
 import com.pipecode.kardexsales.model.web.CreateSalesOkResponse;
 import com.pipecode.kardexsales.model.web.CreateSalesRequest;
 import com.pipecode.kardexsales.usecase.employee.GetEmployee;
@@ -40,7 +39,7 @@ public class CreateSales2Db implements CreateSales {
                 request.getEmployeeName(),
                 request.getEmployeeLastName());
 
-        final var operation=Operation.builder().employee(employee)
+        final var operation = Operation.builder().employee(employee)
                 .type(OperationType.SELL)
                 .build();
 
@@ -49,7 +48,8 @@ public class CreateSales2Db implements CreateSales {
 
         final var productList = request.getProduct().stream().map(item -> {
                     final var product = getProduct.get(item.getProductName(), item.getCategoryName());
-                    product.setQtyInventory(calculateNewQtyInventory(product.getQtyInventory(), item.getQtyBuy()));
+                    validateQty(product.getQtyInventory(), item.getProductQty());
+                    product.setQtyInventory(calculateNewQtyInventory(product.getQtyInventory(), item.getProductQty()));
                     product.setOperation(operation);
                     return product;
                 }
@@ -57,7 +57,6 @@ public class CreateSales2Db implements CreateSales {
         ).collect(Collectors.toSet());
 
         productRepository.saveAll(productList);
-
 
 
         return CreateSalesOkResponse.builder()
@@ -69,15 +68,19 @@ public class CreateSales2Db implements CreateSales {
 
     }
 
-    private static int calculateNewQtyInventory(int qtyInventory, int qtySell) {
-
+    private void validateQty(int qtyInventory, int qtySell) {
         if (qtyInventory == 0) {
             throw new NotFoundElementException("No hay productos disponibles para la venta");
         }
 
         if (qtyInventory < qtySell) {
-            throw new InvalidOperationException("Operacion de venta no se puede realizar la cant de productos disponibles es" + qtyInventory);
+            throw new InvalidOperationException("Operacion de venta no se puede realizar la cant " +
+                    "de productos disponibles es" + qtyInventory);
         }
+
+    }
+
+    private static int calculateNewQtyInventory(int qtyInventory, int qtySell) {
 
         return qtyInventory - qtySell;
     }

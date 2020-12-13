@@ -32,5 +32,5 @@ public class  ProductDto {
 
     @Max(value = 9999, message = INVALID_QTY)
     @Min(value = 1, message = INVALID_QTY)
-    private int qtyBuy;
+    private int productQty;
 }
