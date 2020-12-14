@@ -4,7 +4,6 @@ package com.pipecode.kardexsales.controller.inventory;
 import com.pipecode.kardexsales.model.web.ChangeProductQtyRequest;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
 import com.pipecode.kardexsales.usecase.inventory.ChangeProductQty;
-import com.pipecode.kardexsales.usecase.inventory.ChangeProductQty2Db;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

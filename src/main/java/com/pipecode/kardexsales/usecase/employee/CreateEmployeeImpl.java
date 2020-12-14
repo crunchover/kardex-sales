@@ -1,17 +1,17 @@
 package com.pipecode.kardexsales.usecase.employee;
 
-import com.pipecode.kardexsales.gateway.db.EmployeeRepository;
+import com.pipecode.kardexsales.repository.EmployeeRepository;
 import com.pipecode.kardexsales.model.entity.Employee;
 import com.pipecode.kardexsales.model.web.CreateEmployeeRequest;
-import com.pipecode.kardexsales.validator.BaseValidator;
+import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CreateEmployee2Db implements CreateEmployee {
+public class CreateEmployeeImpl implements CreateEmployee {
 
-    private final BaseValidator validator;
+    private final GenericRequestValidator validator;
 
     private final EmployeeRepository employeeRepository;
 

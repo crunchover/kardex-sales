@@ -1,13 +1,13 @@
 package com.pipecode.kardexsales.usecase.inventory;
 
-import com.pipecode.kardexsales.gateway.db.OperationRepository;
-import com.pipecode.kardexsales.gateway.db.ProductRepository;
-import com.pipecode.kardexsales.gateway.db.UserRepository;
+import com.pipecode.kardexsales.repository.OperationRepository;
+import com.pipecode.kardexsales.repository.ProductRepository;
+import com.pipecode.kardexsales.repository.UserRepository;
 import com.pipecode.kardexsales.model.entity.Operation;
 import com.pipecode.kardexsales.model.entity.OperationType;
 import com.pipecode.kardexsales.model.web.ChangeProductQtyRequest;
 import com.pipecode.kardexsales.usecase.product.GetProduct;
-import com.pipecode.kardexsales.validator.BaseValidator;
+import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +18,9 @@ import java.util.Set;
 @Component
 @AllArgsConstructor
 @Transactional
-public class ChangeProductQty2Db implements ChangeProductQty {
+public class ChangeProductQtyImpl implements ChangeProductQty {
 
-    private final BaseValidator validator;
+    private final GenericRequestValidator validator;
     private final GetProduct getProduct;
     private final UserRepository userRepository;
     private final OperationRepository operationRepository;

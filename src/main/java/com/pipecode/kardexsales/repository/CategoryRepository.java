@@ -1,4 +1,4 @@
-package com.pipecode.kardexsales.gateway.db;
+package com.pipecode.kardexsales.repository;
 
 
 import com.pipecode.kardexsales.model.entity.Category;

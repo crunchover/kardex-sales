@@ -1,17 +1,17 @@
 package com.pipecode.kardexsales.usecase.user;
 
-import com.pipecode.kardexsales.gateway.db.UserRepository;
+import com.pipecode.kardexsales.repository.UserRepository;
 import com.pipecode.kardexsales.model.entity.User;
 import com.pipecode.kardexsales.model.web.CreateUserRequest;
-import com.pipecode.kardexsales.validator.BaseValidator;
+import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class CreateUser2Db implements CreateUser {
+public class CreateUserImpl implements CreateUser {
 
-    private final BaseValidator validator;
+    private final GenericRequestValidator validator;
 
     private final UserRepository userRepository;
 

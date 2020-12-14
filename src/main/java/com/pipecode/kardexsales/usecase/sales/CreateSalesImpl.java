@@ -2,15 +2,15 @@ package com.pipecode.kardexsales.usecase.sales;
 
 import com.pipecode.kardexsales.exception.InvalidOperationException;
 import com.pipecode.kardexsales.exception.NotFoundElementException;
-import com.pipecode.kardexsales.gateway.db.OperationRepository;
-import com.pipecode.kardexsales.gateway.db.ProductRepository;
+import com.pipecode.kardexsales.repository.OperationRepository;
+import com.pipecode.kardexsales.repository.ProductRepository;
 import com.pipecode.kardexsales.model.entity.Operation;
 import com.pipecode.kardexsales.model.entity.OperationType;
 import com.pipecode.kardexsales.model.web.CreateSalesOkResponse;
 import com.pipecode.kardexsales.model.web.CreateSalesRequest;
 import com.pipecode.kardexsales.usecase.employee.GetEmployee;
 import com.pipecode.kardexsales.usecase.product.GetProduct;
-import com.pipecode.kardexsales.validator.BaseValidator;
+import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 @Component
 @Transactional
 @AllArgsConstructor
-public class CreateSales2Db implements CreateSales {
+public class CreateSalesImpl implements CreateSales {
 
-    private final BaseValidator validator;
+    private final GenericRequestValidator validator;
     private final GetEmployee getEmployee;
     private final OperationRepository operationRepository;
     private final ProductRepository productRepository;
@@ -56,14 +56,14 @@ public class CreateSales2Db implements CreateSales {
 
         ).collect(Collectors.toSet());
 
-        productRepository.saveAll(productList);
+        final var cant=productRepository.saveAll(productList).size();
 
 
         return CreateSalesOkResponse.builder()
                 .operationId(String.valueOf(id))
                 .product(request.getProduct())
                 .description(String.format("se realizo la compra por un total de %s productos",
-                        request.getProduct().size()))
+                        cant))
                 .build();
 
     }

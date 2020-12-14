@@ -1,6 +1,7 @@
 package com.pipecode.kardexsales;
 
 
+import com.pipecode.kardexsales.exception.InvalidOperationException;
 import com.pipecode.kardexsales.exception.NotFoundElementException;
 import com.pipecode.kardexsales.exception.ValidatorException;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
@@ -27,6 +28,18 @@ public class MainExceptionHandler {
                 "Informacion invalida",
                 ex.getMessage(),
                 String.join(System.lineSeparator(), ex.getViolationMessages())), UNPROCESSABLE_ENTITY);
+    }
+
+
+    @ExceptionHandler(InvalidOperationException.class)
+    public ResponseEntity<SimpleErrorMessage> handleValidatorException(InvalidOperationException ex) {
+        return new ResponseEntity<SimpleErrorMessage>(new SimpleErrorMessage(
+                ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand().toString(),
+                "invalid-data",
+                "Informacion invalida",
+                ex.getMessage(),
+                String.join(System.lineSeparator(), ex.getCause().getMessage())),
+                UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(NotFoundElementException.class)
