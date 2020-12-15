@@ -16,7 +16,6 @@ public class CreateProductImpl implements CreateProduct {
     private final GenericRequestValidator validator;
     private final ValidateProduct validateProduct;
     private final ProductRepository productRepository;
-    private final GetProduct getProduct;
     private final GetCategory getCategory;
 
     @Override
