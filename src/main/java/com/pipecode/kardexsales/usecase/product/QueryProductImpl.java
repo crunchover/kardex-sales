@@ -34,7 +34,7 @@ public class QueryProductImpl implements QueryProduct{
             throw new NotFoundElementException("No existen resultados para el criterio de busqueda");
         }
 
-        final var total = Long.valueOf(result.size());
+        final var total = result.size();
 
 
 

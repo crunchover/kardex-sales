@@ -1,17 +1,13 @@
 package com.pipecode.kardexsales.usecase.product;
 
-import com.pipecode.kardexsales.model.entity.Category;
 import com.pipecode.kardexsales.model.entity.Product;
 import com.pipecode.kardexsales.model.web.QueryProductRequest;
-import com.pipecode.kardexsales.repository.CategoryRepository;
 import com.pipecode.kardexsales.repository.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor

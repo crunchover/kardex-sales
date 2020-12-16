@@ -23,7 +23,7 @@ public class GetProductEndPoint {
     public static final String PATH = "/products";
 
 
-    @ApiOperation("Permite realizar una consulta de prodcutos.")
+    @ApiOperation("Permite realizar una consulta de productos.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Consulta procesada exitosamente.",
                     response = QueryProductResponse.class),
