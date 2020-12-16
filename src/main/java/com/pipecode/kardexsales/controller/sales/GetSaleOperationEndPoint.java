@@ -4,10 +4,18 @@ import com.pipecode.kardexsales.model.web.QuerySalesRequest;
 import com.pipecode.kardexsales.model.web.QuerySalesResponse;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
 import com.pipecode.kardexsales.usecase.sales.QuerySales;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 

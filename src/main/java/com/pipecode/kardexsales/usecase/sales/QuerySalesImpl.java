@@ -12,7 +12,7 @@ import static java.util.Objects.nonNull;
 
 @Component
 @AllArgsConstructor
-public class QuerySalesImpl implements QuerySales{
+public class QuerySalesImpl implements QuerySales {
 
     private final GenericRequestValidator validator;
     private final SearchSalesByPage searchSalesByPage;
@@ -26,7 +26,7 @@ public class QuerySalesImpl implements QuerySales{
 
         final var result = findByCustomRequest ?
                 searchSalesByRequestParams.findAllByRequestAndPageable(request) :
-                searchSalesByPage.apply(request.getOffset(),request.getLimit());
+                searchSalesByPage.apply(request.getOffset(), request.getLimit());
 
 
         if (result.isEmpty()) {
@@ -34,7 +34,6 @@ public class QuerySalesImpl implements QuerySales{
         }
 
         final var total = result.size();
-
 
 
         return QuerySalesResponse.builder()

@@ -1,8 +1,8 @@
 package com.pipecode.kardexsales.usecase.employee;
 
-import com.pipecode.kardexsales.repository.EmployeeRepository;
 import com.pipecode.kardexsales.model.entity.Employee;
 import com.pipecode.kardexsales.model.web.CreateEmployeeRequest;
+import com.pipecode.kardexsales.repository.EmployeeRepository;
 import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class CreateEmployeeImpl implements CreateEmployee {
         validator.accept(request);
 
         //Todo:// Fuera de scope realizar mejores validaciones
-        Employee employee= new Employee();
+        Employee employee = new Employee();
         employee.setIdentification(request.getIdentification());
         employee.setName(request.getName());
         employee.setLastName(request.getLastName());

@@ -6,7 +6,11 @@ import com.pipecode.kardexsales.model.web.QuerySalesRequest;
 import com.pipecode.kardexsales.repository.EmployeeRepository;
 import com.pipecode.kardexsales.repository.OperationRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,7 +28,7 @@ public class SearchSalesByRequestParamsImpl implements SearchSalesByRequestParam
     public List<Operation> findAllByRequestAndPageable(QuerySalesRequest request) {
         final Pageable pageable = PageRequest.of(request.getOffset(), request.getLimit(), DEFAULT_SORT);
 
-        final var employee= getEmployee.findByIdentification(request.getIdentificationEmployee());
+        final var employee = getEmployee.findByIdentification(request.getIdentificationEmployee());
 
         final Operation operation = Operation
                 .builder().employee(employee)

@@ -1,8 +1,8 @@
 package com.pipecode.kardexsales.usecase.employee;
 
 import com.pipecode.kardexsales.exception.NotFoundElementException;
-import com.pipecode.kardexsales.repository.EmployeeRepository;
 import com.pipecode.kardexsales.model.entity.Employee;
+import com.pipecode.kardexsales.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

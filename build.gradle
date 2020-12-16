@@ -2,6 +2,9 @@ plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id "com.github.spotbugs" version "4.4.0"
+	id "checkstyle"
+	id "pmd"
 }
 
 group = 'com.pipecode'
@@ -36,3 +39,46 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+
+/* PMD CONFIG ----------------------------------------------------------------------------------------- */
+
+pmd {
+	toolVersion = '6.21.0'
+	sourceSets = [sourceSets.main]
+	ruleSetFiles = files("config/pmd/pmd-rules.xml")
+	ruleSets = []
+}
+
+tasks.withType(Pmd) {
+	reports {
+		html.enabled true
+		xml.enabled = false
+	}
+}
+
+/* SPOTBUGS CONFIG ----------------------------------------------------------------------------------------- */
+
+spotbugs {
+	showProgress = true
+	excludeFilter = file("config/spotbugs/exclude-filter.xml")
+}
+
+spotbugsMain {
+	reports {
+		html {
+			enabled = true
+			stylesheet = 'fancy-hist.xsl'
+		}
+	}
+}
+
+spotbugsTest {
+	reports {
+		html {
+			enabled = true
+			stylesheet = 'fancy-hist.xsl'
+		}
+	}
+}
+

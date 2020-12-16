@@ -1,7 +1,7 @@
 package com.pipecode.kardexsales.usecase.product;
 
-import com.pipecode.kardexsales.repository.CategoryRepository;
 import com.pipecode.kardexsales.model.entity.Category;
+import com.pipecode.kardexsales.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +13,11 @@ public class GetCategoryImpl implements GetCategory {
 
     @Override
     public Category get(String name) {
-        return categoryRepository.findByName(name).orElseGet(()->newCategory(name));
+        return categoryRepository.findByName(name).orElseGet(() -> newCategory(name));
     }
 
     private Category newCategory(String name) {
-        Category newCategory= new Category();
+        Category newCategory = new Category();
         newCategory.setName(name);
         return categoryRepository.save(newCategory);
     }

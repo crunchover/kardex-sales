@@ -4,10 +4,18 @@ import com.pipecode.kardexsales.model.web.QueryProductRequest;
 import com.pipecode.kardexsales.model.web.QueryProductResponse;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
 import com.pipecode.kardexsales.usecase.product.QueryProduct;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -39,13 +47,17 @@ public class GetProductEndPoint {
                                             @ApiParam(value = "limit", required = true)
                                             @RequestParam(name = "limit") final Integer limit,
                                             @ApiParam
-                                            @RequestParam(name = "brand", required = false, defaultValue = "") final String brand,
+                                            @RequestParam(name = "brand", required = false, defaultValue = "")
+                                                final String brand,
                                             @ApiParam
-                                            @RequestParam(name = "description", required = false, defaultValue = "") final String description,
+                                            @RequestParam(name = "description", required = false, defaultValue = "")
+                                                final String description,
                                             @ApiParam
-                                            @RequestParam(name = "productName", required = false, defaultValue = "") final String productName,
+                                            @RequestParam(name = "productName", required = false, defaultValue = "")
+                                                final String productName,
                                             @ApiParam
-                                                @RequestParam(name = "category", required = false, defaultValue = "") final String category) {
+                                                @RequestParam(name = "category", required = false, defaultValue = "")
+                                                final String category) {
 
         final var request =
                 QueryProductRequest.builder()

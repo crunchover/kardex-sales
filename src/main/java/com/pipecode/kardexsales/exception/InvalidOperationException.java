@@ -3,7 +3,7 @@ package com.pipecode.kardexsales.exception;
 import lombok.Getter;
 
 @Getter
-public class InvalidOperationException extends RuntimeException{
+public class InvalidOperationException extends RuntimeException {
 
     private static final long serialVersionUID = 3424578795509908686L;
 

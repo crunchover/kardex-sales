@@ -2,20 +2,20 @@ package com.pipecode.kardexsales.usecase.sales;
 
 import com.pipecode.kardexsales.exception.InvalidOperationException;
 import com.pipecode.kardexsales.exception.NotFoundElementException;
-import com.pipecode.kardexsales.repository.OperationRepository;
-import com.pipecode.kardexsales.repository.ProductRepository;
 import com.pipecode.kardexsales.model.entity.Operation;
 import com.pipecode.kardexsales.model.entity.OperationType;
 import com.pipecode.kardexsales.model.web.CreateSalesOkResponse;
 import com.pipecode.kardexsales.model.web.CreateSalesRequest;
+import com.pipecode.kardexsales.repository.OperationRepository;
+import com.pipecode.kardexsales.repository.ProductRepository;
 import com.pipecode.kardexsales.usecase.employee.GetEmployee;
 import com.pipecode.kardexsales.usecase.product.GetProduct;
 import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.util.stream.Collectors;
+import javax.transaction.Transactional;
 
 
 @Component
@@ -56,7 +56,7 @@ public class CreateSalesImpl implements CreateSales {
 
         ).collect(Collectors.toSet());
 
-        final var cant=productRepository.saveAll(productList).size();
+        final var cant = productRepository.saveAll(productList).size();
 
 
         return CreateSalesOkResponse.builder()

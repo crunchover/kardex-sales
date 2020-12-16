@@ -1,8 +1,8 @@
 package com.pipecode.kardexsales.usecase.user;
 
-import com.pipecode.kardexsales.repository.UserRepository;
 import com.pipecode.kardexsales.model.entity.User;
 import com.pipecode.kardexsales.model.web.CreateUserRequest;
+import com.pipecode.kardexsales.repository.UserRepository;
 import com.pipecode.kardexsales.validator.GenericRequestValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class CreateUserImpl implements CreateUser {
         validator.accept(request);
 
         //Todo:// Fuera de scope realizar mejores validaciones
-        User user= new User();
+        User user = new User();
         user.setUserName(request.getUserName());
         user.setActive(request.getIsActive());
 

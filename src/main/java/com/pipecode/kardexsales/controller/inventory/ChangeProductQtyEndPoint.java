@@ -12,7 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @AllArgsConstructor
@@ -39,7 +43,7 @@ public class ChangeProductQtyEndPoint {
     public ResponseEntity<String> apply(@RequestBody final ChangeProductQtyRequest request) {
 
         useCase.apply(request);
-        log.debug("Actualizacion de inventario del producto "+ request.getProduct() +"realizado correctamente" );
+        log.debug("Actualizacion de inventario del producto " + request.getProduct() + " realizado correctamente");
         return ResponseEntity.noContent().build();
 
     }

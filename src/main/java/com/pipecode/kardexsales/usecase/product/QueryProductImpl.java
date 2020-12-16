@@ -12,7 +12,7 @@ import static java.util.Objects.nonNull;
 
 @Component
 @AllArgsConstructor
-public class QueryProductImpl implements QueryProduct{
+public class QueryProductImpl implements QueryProduct {
     private final GenericRequestValidator validator;
 
     private final SearchProductByPage searchProductByPage;
@@ -28,14 +28,13 @@ public class QueryProductImpl implements QueryProduct{
 
         final var result = findByCustomRequest ?
                 searchProductByRequestParams.findAllByRequestAndPageable(request) :
-                searchProductByPage.apply(request.getOffset(),request.getLimit());
+                searchProductByPage.apply(request.getOffset(), request.getLimit());
 
         if (result.isEmpty()) {
             throw new NotFoundElementException("No existen resultados para el criterio de busqueda");
         }
 
         final var total = result.size();
-
 
 
         return QueryProductResponse.builder()

@@ -1,16 +1,29 @@
 package com.pipecode.kardexsales.model.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+
+
 
 @Entity
 @Table(name = "products")
@@ -52,28 +65,6 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "operation_id")
     private Operation operation;
-
-
-    @NotNull(message = "fecha de creacion es un dato obligatorio")
-    @Column(name = "createdDate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "updatedDate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
-
-    @PrePersist
-    public void prePersist() {
-        if (createdDate == null) {
-            createdDate = new Date();
-        }
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        updatedDate = new Date();
-    }
 
 
 }

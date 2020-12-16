@@ -11,7 +11,13 @@ import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+
 
 public class CreateProductImlTest {
 
@@ -19,7 +25,7 @@ public class CreateProductImlTest {
     @Test
     void whenArgumentIsNull_thenThrowNullPointerException() {
         // Given
-        final var useCase = new CreateProductImpl(null,null,null,
+        final var useCase = new CreateProductImpl(null, null, null,
                 null);
 
         // When
@@ -44,7 +50,7 @@ public class CreateProductImlTest {
 
         when(validator.andThen(any())).thenCallRealMethod();
         doThrow(RuntimeException.class).when(validator).accept(request);
-        final var useCase = new CreateProductImpl(validator,validateProduct,productRepository,category);
+        final var useCase = new CreateProductImpl(validator, validateProduct, productRepository, category);
 
         // When
         final Executable executable = () -> useCase.apply(request);

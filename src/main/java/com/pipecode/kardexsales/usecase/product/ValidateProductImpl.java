@@ -15,9 +15,9 @@ public class ValidateProductImpl implements ValidateProduct {
 
     @Override
     public void verify(String productName, String productCategory) {
-        if(productRepository.findByNameAndCategoryName(productName, productCategory).stream().count()>0){
-            throw new ValidatorException("Error el producto ya existe", Collections.singletonList(productName+" - "
-                    +productCategory));
+        if (productRepository.findByNameAndCategoryName(productName, productCategory).stream().count() > 0) {
+            throw new ValidatorException("Error el producto ya existe", Collections.singletonList(productName + " - "
+                    + productCategory));
         }
     }
 

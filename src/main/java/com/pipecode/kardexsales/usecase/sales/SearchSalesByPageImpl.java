@@ -1,9 +1,7 @@
 package com.pipecode.kardexsales.usecase.sales;
 
 import com.pipecode.kardexsales.model.entity.Operation;
-import com.pipecode.kardexsales.model.entity.Product;
 import com.pipecode.kardexsales.repository.OperationRepository;
-import com.pipecode.kardexsales.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +12,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class SearchSalesByPageImpl implements SearchSalesByPage{
+public class SearchSalesByPageImpl implements SearchSalesByPage {
     private final OperationRepository operationRepository;
 
     public static final Sort DEFAULT_SORT = Sort.by("id").ascending();

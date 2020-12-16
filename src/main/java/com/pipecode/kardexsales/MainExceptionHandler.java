@@ -5,7 +5,6 @@ import com.pipecode.kardexsales.exception.InvalidOperationException;
 import com.pipecode.kardexsales.exception.NotFoundElementException;
 import com.pipecode.kardexsales.exception.ValidatorException;
 import com.pipecode.kardexsales.model.web.SimpleErrorMessage;
-
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
