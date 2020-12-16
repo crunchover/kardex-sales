@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(ChangeProductQtyEndPoint.PATH)
 public class ChangeProductQtyEndPoint {
 
-    public static final String PATH = "/products/inventory/";
+    public static final String PATH = "/products";
 
     private final ChangeProductQty useCase;
 

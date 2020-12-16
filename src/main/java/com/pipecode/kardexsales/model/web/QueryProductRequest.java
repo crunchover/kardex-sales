@@ -16,7 +16,7 @@ public class QueryProductRequest {
     public static final String INVALID_OFFSET = "El campo offset debe ser numerico mayor o igual a cero";
     public static final String BLANK_LIMIT = "El campo limit (Cantidad de resultados por pagina) no puede ser vacio";
     public static final String INVALID_LIMIT = "El campo limit debe ser numerico mayor que cero";
-    public static final String WRONG_SIZE_DESCRIPTION = "El campo origin-id puede contener " +
+    public static final String WRONG_SIZE_CATEGORY = "El campo origin-id puede contener " +
             "hasta 64 caracteres";
     public static final String WRONG_SIZE_BRAND = "El campo transaction-type" +
             "puede contener hasta 64 caracteres";
@@ -35,7 +35,10 @@ public class QueryProductRequest {
     @Digits(integer = 6, fraction = 0, message = INVALID_LIMIT)
     private int limit;
 
-    @Size(max = 64, message = WRONG_SIZE_DESCRIPTION)
+    @Size(max = 64, message = WRONG_SIZE_CATEGORY)
+    private final String category;
+
+    @Size(max = 64, message = WRONG_SIZE_CATEGORY)
     private final String description;
 
     @Size(max = 64, message = WRONG_SIZE_BRAND)
